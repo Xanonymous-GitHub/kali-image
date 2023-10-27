@@ -3,10 +3,12 @@ LABEL authors="xanonymous"
 
 RUN apt update -y \
     && apt full-upgrade -y \
-    && apt install -y kali-linux-headless dialog apt-utils fish \
+    && apt install -y -q curl git apt-utils fish \
+    && apt install -y -q kali-linux-headless \
     && apt autoremove -y \
     && apt clean -y \
-    && curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | fish \
+    && fish install_omf --noninteractive \
+    && curl -L https://get.oh-my.fish > install_omf \
     && omf install bobthefish
 
 CMD ["fish"]
