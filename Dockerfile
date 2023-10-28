@@ -1,3 +1,5 @@
+# syntax=docker/dockerfile:experimental
+
 FROM kalilinux/kali-rolling
 LABEL authors="xanonymous"
 
@@ -7,8 +9,8 @@ RUN apt update -y \
     # && apt install -y -q kali-linux-headless kali-linux-nethunter \
     && apt autoremove -y \
     && apt clean -y \
-    && fish install_omf --noninteractive \
     && curl -L https://get.oh-my.fish > install_omf \
+    && fish install_omf --noninteractive \
     && omf install bobthefish
 
 CMD ["fish"]
