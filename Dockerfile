@@ -11,6 +11,6 @@ RUN apt update -y \
     && apt clean -y \
     && curl -L https://get.oh-my.fish > install_omf \
     && fish install_omf --noninteractive \
-    && omf install bobthefish
+    && fish && omf install bobthefish
 
 CMD ["fish"]
