@@ -22,9 +22,13 @@ RUN apt update -y && \
     # Kali Linux packages
     kali-linux-core \
     kali-tweaks \
-    kali-system-cli && \
+    kali-system-cli \
+    kali-linux-headless && \
     # Clean up
     apt autoremove -y && apt clean -y
+
+# Start the apparmor service
+RUN systemctl start apparmor && systemctl enable apparmor
 
 # Systemd configuration
 RUN (cd /lib/systemd/system/sysinit.target.wants/ && for i in *; do [ $i == systemd-tmpfiles-setup.service ] || rm -f $i; done); \
@@ -41,9 +45,6 @@ RUN curl -L https://get.oh-my.fish > install_omf && \
     fish install_omf --noninteractive && \
     rm install_omf && \
     fish -c "omf install bobthefish"
-
-# Enable services
-RUN systemctl enable --now snapd apparmor
 
 # Set systemd as the entrypoint
 ENTRYPOINT ["/sbin/init"]
