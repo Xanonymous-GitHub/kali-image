@@ -3,12 +3,24 @@
 FROM kalilinux/kali-bleeding-edge
 LABEL authors="xanonymous"
 
+ENV DEBIAN_FRONTEND=noninteractive
+
 RUN apt update -y \
     && apt full-upgrade -y \
+    && apt install -y -q \
     # Essential packages
-    && apt install -y -q curl git apt-utils cmake dialog fish \
+    curl \
+    git \
+    apt-utils \
+    cmake \
+    dialog \
+    fuse \
+    fish \
     # System packages
-    && apt install -y -q kali-linux-core kali-tweaks kali-system-cli build-essential \
+    kali-linux-core \
+    kali-tweaks \
+    kali-system-cli \
+    build-essential \
     # Cleanup
     && apt autoremove -y \
     && apt clean -y \
