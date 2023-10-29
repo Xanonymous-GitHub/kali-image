@@ -27,9 +27,6 @@ RUN apt update -y && \
     # Clean up
     apt autoremove -y && apt clean -y
 
-# Start the apparmor service
-RUN systemctl start apparmor && systemctl enable apparmor
-
 # Systemd configuration
 RUN (cd /lib/systemd/system/sysinit.target.wants/ && for i in *; do [ $i == systemd-tmpfiles-setup.service ] || rm -f $i; done); \
     rm -f /lib/systemd/system/multi-user.target.wants/*;\
