@@ -22,7 +22,9 @@ RUN apt update -y && \
     # Kali Linux packages
     kali-linux-core \
     kali-tweaks \
-    kali-system-cli \
+    kali-system-cli && \
+    # Kali Linux Metapackages
+    apt install -y -q \
     kali-linux-headless && \
     # Clean up
     apt autoremove -y && apt clean -y
