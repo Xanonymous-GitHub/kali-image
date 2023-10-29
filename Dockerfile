@@ -24,8 +24,25 @@ RUN apt update -y && \
     kali-tweaks \
     kali-system-cli && \
     # Kali Linux Metapackages
-    apt install -y -q \
-    kali-linux-headless && \
+    apt install -y -q --no-install-recommends \
+    kali-linux-headless \
+    kali-linux-nethunter \
+    kali-linux-labs \
+    kali-tools-hardware \
+    kali-tools-crypto-stego \
+    kali-tools-fuzzing \
+    kali-tools-802-11 \
+    kali-tools-vulnerability \
+    kali-tools-web \
+    kali-tools-information-gathering \
+    kali-tools-database \
+    kali-tools-passwords \
+    kali-tools-wireless \
+    kali-tools-reverse-engineering \
+    kali-tools-exploitation \
+    kali-tools-social-engineering \
+    kali-tools-sniffing-spoofing \
+    kali-tools-post-exploitation && \
     # Clean up
     apt autoremove -y && apt clean -y
 
