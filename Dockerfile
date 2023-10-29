@@ -9,8 +9,22 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN apt update -y && \
     apt full-upgrade -y && \
     apt install -y -q \
-    curl git apt-utils cmake dialog fuse fish systemd snapd \
-    kali-linux-core kali-tweaks kali-system-cli build-essential
+    curl \
+    git \
+    apt-utils \
+    cmake \
+    dialog \
+    fuse \
+    fish \
+    systemd \
+    snapd \
+    build-essential \
+    # Kali Linux packages
+    kali-linux-core \
+    kali-tweaks \
+    kali-system-cli && \
+    # Clean up
+    apt autoremove -y && apt clean -y
 
 # Systemd configuration
 RUN (cd /lib/systemd/system/sysinit.target.wants/ && for i in *; do [ $i == systemd-tmpfiles-setup.service ] || rm -f $i; done); \
@@ -28,8 +42,8 @@ RUN curl -L https://get.oh-my.fish > install_omf && \
     rm install_omf && \
     fish -c "omf install bobthefish"
 
-# Cleanup
-RUN apt autoremove -y && apt clean -y
+# Enable services
+RUN systemctl enable --now snapd apparmor
 
 # Set systemd as the entrypoint
 ENTRYPOINT ["/sbin/init"]
