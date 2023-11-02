@@ -19,15 +19,16 @@ RUN apt update -y && \
     systemd \
     snapd \
     build-essential \
+    gcc-multilib \
     # Kali Linux packages
     kali-linux-core \
     kali-tweaks \
     kali-system-cli && \
     # Kali Linux Metapackages
     apt install -y -q --no-install-recommends \
-    kali-linux-headless \
-    kali-linux-nethunter \
-    kali-linux-labs \
+    # kali-linux-headless \
+    # kali-linux-nethunter \
+    # kali-linux-labs \
     kali-tools-hardware \
     kali-tools-crypto-stego \
     kali-tools-fuzzing \
